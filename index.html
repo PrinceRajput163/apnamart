@@ -3,557 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apna Mart - Premium Gift Store | Dibiyapur</title>
-    <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Apna Mart - Gift Store | Dibiyapur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #d63031;
-            --primary-dark: #b71540;
-            --gold: #f39c12;
-            --dark: #1e272e;
-            --light: #f8f9fa;
+            --primary: #ff4757;
+            --dark: #2f3640;
+            --light: #f5f6fa;
             --white: #ffffff;
-            --shadow: 0 15px 35px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0,0,0,0.08);
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        /* Navbar */
+        header { background: var(--white); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 5%; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+        .logo h1 { font-size: 20px; font-weight: 700; color: var(--dark); }
+        .logo h1 span { color: var(--primary); }
+        
+        .nav-links { list-style: none; display: flex; gap: 15px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 14px; }
+        .nav-links a.active, .nav-links a:hover { color: var(--primary); }
+        
+        .cart-badge { background: var(--primary); color: white; padding: 2px 8px; border-radius: 50px; font-size: 12px; font-weight: 600; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        /* Hero */
+        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('b.jpeg') no-repeat center center/cover; height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 0 20px; }
+        .hero h2 { font-size: 32px; font-weight: 700; margin-bottom: 15px; }
+        .hero p { font-size: 15px; margin-bottom: 25px; }
+        
+        .btn { padding: 10px 24px; border-radius: 30px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; border: none; cursor: pointer; }
+        .btn-primary { background: var(--primary); color: var(--white); }
+        .btn-whatsapp { background: #25d366; color: var(--white); }
 
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.7;
-        }
+        /* Section */
+        .section { padding: 50px 5%; text-align: center; }
+        .section h2 { font-size: 26px; margin-bottom: 10px; color: var(--dark); }
+        .section p { color: #666; font-size: 14px; margin-bottom: 30px; }
 
-        /* Top Bar */
-        .top-bar {
-            background: linear-gradient(135deg, var(--dark), #353b48);
-            color: var(--white);
-            padding: 10px 5%;
-            font-size: 13px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .top-bar-info a {
-            color: var(--white);
-            text-decoration: none;
-            margin-right: 15px;
-            transition: var(--transition);
-        }
-
-        .top-bar-info a:hover {
-            color: var(--gold);
-        }
-
-        .top-bar-info i, .top-bar span i {
-            color: var(--gold);
-            margin-right: 5px;
-        }
-
-        /* Sticky Header */
-        header {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 5%;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--gold);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .logo-text h1 {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--dark);
-            font-family: 'Playfair Display', serif;
-            line-height: 1.1;
-        }
-
-        .logo-text h1 span {
-            color: var(--primary);
-        }
-
-        .logo-text p {
-            font-size: 11px;
-            color: #718093;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            font-size: 15px;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary);
-        }
-
-        /* Cart Icon in Nav */
-        .cart-icon-link {
-            position: relative;
-            background: #fff3f3;
-            padding: 8px 15px;
-            border-radius: 30px;
-            color: var(--primary) !important;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid rgba(214, 48, 49, 0.2);
-            transition: var(--transition);
-        }
-
-        .cart-icon-link:hover {
-            background: var(--primary);
-            color: var(--white) !important;
-        }
-
-        .cart-count {
-            background: var(--primary);
-            color: var(--white);
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 50%;
-            position: absolute;
-            top: -5px;
-            right: -5px;
-        }
-
-        .cart-icon-link:hover .cart-count {
-            background: var(--white);
-            color: var(--primary);
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--dark);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('b.jpeg') no-repeat center center/cover;
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            padding: 40px 20px;
-        }
-
-        .hero-content h2 {
-            font-size: 44px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .hero-content p {
-            font-size: 18px;
-            margin-bottom: 35px;
-            max-width: 700px;
-            margin-inline: auto;
-            color: #f1f2f6;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-            font-size: 15px;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--white);
-            box-shadow: 0 5px 20px rgba(214, 48, 49, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-
-        .btn-whatsapp {
-            background: #25d366;
-            color: var(--white);
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-whatsapp:hover {
-            background: #1ebd5a;
-            transform: translateY(-3px);
-        }
-
-        /* Section Header */
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-header h2 {
-            font-size: 34px;
-            color: var(--dark);
-            margin-bottom: 12px;
-            font-family: 'Playfair Display', serif;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 3px;
-            background: var(--primary);
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        .section-header p {
-            color: #718093;
-            font-size: 15px;
-        }
-
-        /* Featured Products Preview Section */
-        .preview-section {
-            padding: 90px 5%;
-            background: var(--white);
-        }
-
-        .preview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: var(--light);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid #eee;
-            text-align: center;
-            padding-bottom: 20px;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .product-img {
-            height: 240px;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 20px;
-        }
-
-        .product-info h3 {
-            font-size: 18px;
-            margin-bottom: 5px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .product-price {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-
-        /* About Highlight */
-        .about-highlight {
-            padding: 80px 5%;
-            background: #fdfdfd;
-        }
-
-        .about-box {
-            background: linear-gradient(135deg, var(--dark), #2f3542);
-            color: var(--white);
-            border-radius: 25px;
-            padding: 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 40px;
-            box-shadow: var(--shadow);
-        }
-
-        .about-box-text h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 30px;
-            margin-bottom: 15px;
-            color: var(--gold);
-        }
-
-        .about-box-text p {
-            color: #f1f2f6;
-            margin-bottom: 20px;
-            font-size: 15px;
-        }
-
-        /* Floating WhatsApp Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25d366;
-            color: #fff;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1) rotate(10deg);
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: left; }
+        .card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 15px; }
+        .card-body h3 { font-size: 16px; margin-bottom: 5px; }
+        .card-body p { font-size: 13px; color: #777; margin-bottom: 10px; }
+        .price { font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 10px; }
 
         /* Footer */
-        footer {
-            background: var(--dark);
-            color: var(--white);
-            text-align: center;
-            padding: 30px 5%;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            font-size: 14px;
-            color: #a4b0be;
-        }
+        footer { background: var(--dark); color: var(--white); text-align: center; padding: 20px; font-size: 13px; }
 
-        @media(max-width: 991px) {
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                padding: 20px 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: clip-path 0.4s ease-in-out;
-            }
-            .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .about-box {
-                flex-direction: column;
-                text-align: center;
-                padding: 30px 20px;
-            }
-            .hero-content h2 {
-                font-size: 32px;
-            }
+        /* Mobile Adjustments */
+        @media(max-width: 768px) {
+            .nav-links { gap: 10px; font-size: 12px; }
+            .hero h2 { font-size: 26px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="top-bar-info">
-            <a href="tel:9756595920"><i class="fas fa-phone-alt"></i> +91 97565 95920</a>
-            <a href="mailto:swaritrajput0@gmail.com"><i class="fas fa-envelope"></i> swaritrajput0@gmail.com</a>
-        </div>
-        <div>
-            <span><i class="fas fa-map-marker-alt"></i> Phaphund Road, Durga Nagar, Dibiyapur</span>
-        </div>
-    </div>
-
-    <!-- Header / Navbar -->
     <header>
         <nav class="navbar">
-            <a href="index.html" class="logo-container">
-                <img src="a.png" alt="Apna Mart Logo" class="logo-img">
-                <div class="logo-text">
-                    <h1>Apna <span>Mart</span></h1>
-                    <p>Gift Store</p>
-                </div>
+            <a href="index.html" class="logo">
+                <img src="a.png" alt="Logo">
+                <h1>Apna <span>Mart</span></h1>
             </a>
-            <ul class="nav-links" id="navLinks">
+            <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="products.html">All Gifts & Catalog</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li>
-                    <a href="cart.html" class="cart-icon-link">
-                        <i class="fas fa-shopping-cart"></i> Cart <span class="cart-count" id="cartCount">0</span>
-                    </a>
-                </li>
+                <li><a href="products.html">Gifts</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-badge" id="cartCount">0</span></a></li>
             </ul>
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h2>Welcome to Apna Mart Gift Store</h2>
-            <p>Dibiyapur ka sabse behtareen gift aur fancy items destination. Amazon aur Flipkart ki tarah abhi online cart mein add karein aur WhatsApp par order bhejein!</p>
-            <div class="btn-group">
-                <a href="products.html" class="btn btn-primary"><i class="fas fa-gift"></i> Browse All Products</a>
-                <a href="https://wa.me/918923315930?text=Hello%20Apna%20Mart,%20I%20want%20to%20inquire%20about%20gifts." target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+    <section class="hero">
+        <div>
+            <h2>Apna Mart Gift Store</h2>
+            <p>Dibiyapur ka sabse behtareen gift aur fancy items destination.</p>
+            <a href="products.html" class="btn btn-primary"><i class="fas fa-gift"></i> Explore Gifts</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Featured Collection</h2>
+        <p>Aapke khaas mauko ke liye behtareen taufe</p>
+        <div class="grid">
+            <div class="card">
+                <img src="b.jpeg" alt="Gift">
+                <div class="card-body">
+                    <h3>Special Gift Hamper</h3>
+                    <p>Phaphund Road store available items.</p>
+                    <div class="price">₹499</div>
+                    <a href="products.html" class="btn btn-primary" style="width: 100%; justify-content: center;">View Catalog</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="c.png" alt="Gift">
+                <div class="card-body">
+                    <h3>Birthday Celebration Pack</h3>
+                    <p>Make birthdays unforgettable.</p>
+                    <div class="price">₹799</div>
+                    <a href="products.html" class="btn btn-primary" style="width: 100%; justify-content: center;">View Catalog</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Products Preview -->
-    <section class="preview-section">
-        <div class="section-header">
-            <h2>Featured Gift Items</h2>
-            <p>Hamare store ke kuch khaas aur popular products</p>
-        </div>
-        <div class="preview-grid">
-            <div class="product-card">
-                <img src="b.jpeg" alt="Store Gift Item" class="product-img">
-                <div class="product-info">
-                    <h3>Spacious Store Hamper</h3>
-                    <div class="product-price">Rs. 499</div>
-                    <a href="products.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;"><i class="fas fa-eye"></i> View Catalog</a>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="c.png" alt="Special Gift Pack" class="product-img">
-                <div class="product-info">
-                    <h3>Birthday & Celebration Pack</h3>
-                    <div class="product-price">Rs. 799</div>
-                    <a href="products.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;"><i class="fas fa-eye"></i> View Catalog</a>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="d.png" alt="Home Decor Showpiece" class="product-img">
-                <div class="product-info">
-                    <h3>Premium Home Decor Showpiece</h3>
-                    <div class="product-price">Rs. 1,299</div>
-                    <a href="products.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;"><i class="fas fa-eye"></i> View Catalog</a>
-                </div>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="products.html" class="btn btn-primary">See All Products in Store <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </section>
-
-    <!-- About Highlight Box -->
-    <section class="about-highlight">
-        <div class="about-box">
-            <div class="about-box-text">
-                <h3>Managed by Mr. Shyam Sundar Rajput</h3>
-                <p>Apna Mart sthit hai Phaphund Road, Durga Nagar, Dibiyapur par. Hamare paas ek shandar hall mein gifts ki vishal range uplabdh hai. Aap website se direct order ya WhatsApp inquiry kar sakte hain!</p>
-                <a href="contact.html" class="btn btn-primary" style="background: var(--gold); color: var(--dark); font-weight: 700;"><i class="fas fa-map-marker-alt"></i> Visit Store Location</a>
-            </div>
-            <div>
-                <img src="a.png" alt="Owner Store Logo" style="width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--gold); object-fit: cover; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
-            </div>
-        </div>
-    </section>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/918923315930?text=Hello%20Apna%20Mart,%20I%20have%20an%20inquiry." target="_blank" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Apna Mart Gift Store, Dibiyapur. All Rights Reserved. | Owner: Mr. Shyam Sundar Rajput</p>
+        <p>&copy; 2026 Apna Mart, Dibiyapur | Owner: Mr. Shyam Sundar Rajput</p>
     </footer>
 
-    <!-- Global Cart Count Script -->
     <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Update Cart Count in Header
         function updateCartCount() {
             let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
-            let totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cartCount').innerText = totalCount;
+            let total = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').innerText = total;
         }
         updateCartCount();
     </script>
