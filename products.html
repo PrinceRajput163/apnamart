@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --primary: #e84118; --dark: #1e272e; --light: #f5f6fa; --white: #ffffff; --gold: #fbc531; --shadow: 0 10px 30px rgba(0,0,0,0.08); --transition: all 0.3s ease; }
+        :root { --primary: #e84118; --dark: #1e272e; --light: #f5f6fa; --white: #ffffff; --gold: #fbc531; --shadow: 0 10px 30px rgba(0,0,0,0.08); }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--light); color: var(--dark); line-height: 1.7; }
 
@@ -20,7 +20,7 @@
         .logo h1 span { color: var(--primary); }
         
         .nav-links { list-style: none; display: flex; gap: 20px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 14px; transition: var(--transition); }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 14px; }
         .nav-links a.active, .nav-links a:hover { color: var(--primary); }
         .cart-badge { background: var(--primary); color: white; padding: 2px 7px; border-radius: 50px; font-size: 11px; font-weight: 600; }
 
@@ -28,15 +28,14 @@
         .container h2 { text-align: center; margin-bottom: 35px; font-size: 32px; font-family: 'Playfair Display', serif; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
-        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(0,0,0,0.04); transition: var(--transition); }
-        .card:hover { transform: translateY(-5px); }
+        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(0,0,0,0.04); }
         .card img { width: 100%; height: 220px; object-fit: cover; }
         .card-body { padding: 20px; text-align: center; }
         .card-body h3 { font-size: 18px; margin-bottom: 5px; font-family: 'Playfair Display', serif; }
         .card-body p { font-size: 13px; color: #718093; margin-bottom: 12px; }
         .price { font-weight: 700; color: var(--primary); font-size: 18px; margin-bottom: 15px; }
 
-        .btn { padding: 12px 20px; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; border: none; cursor: pointer; width: 100%; background: var(--primary); color: white; transition: var(--transition); box-shadow: 0 4px 12px rgba(232, 65, 24, 0.3); }
+        .btn { padding: 12px 20px; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; border: none; cursor: pointer; width: 100%; background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(232, 65, 24, 0.3); }
         .btn:hover { opacity: 0.95; }
 
         footer { background: var(--dark); color: var(--white); text-align: center; padding: 25px; font-size: 13px; color: #a4b0be; margin-top: 50px; }
@@ -47,7 +46,7 @@
     <header>
         <nav class="navbar">
             <a href="index.html" class="logo">
-                <img src="aa.jpeg" alt="Logo">
+                <img src="a.png" alt="Logo">
                 <h1>Apna <span>Mart</span></h1>
             </a>
             <ul class="nav-links">
@@ -62,62 +61,35 @@
     <div class="container">
         <h2>Premium Gift Collection</h2>
         <div class="grid">
-            <!-- Item 1 -->
             <div class="card">
-                <img src="bb.jpeg" alt="Gift">
+                <img src="b.jpeg" alt="Gift">
                 <div class="card-body">
                     <h3>Special Gift Hamper</h3>
                     <p>Exclusive package for loved ones</p>
                     <div class="price">₹499</div>
-                    <button type="button" onclick="addToCart('Special Gift Hamper', 499, 'bb.jpeg')" class="btn">
+                    <button type="button" onclick="addToCart('Special Gift Hamper', 499, 'b.jpeg')" class="btn">
                         <i class="fas fa-cart-plus"></i> Add to Cart
                     </button>
                 </div>
             </div>
-            <!-- Item 2 -->
             <div class="card">
-                <img src="cc.jpeg" alt="Gift">
+                <img src="c.png" alt="Gift">
                 <div class="card-body">
                     <h3>Birthday Celebration Pack</h3>
                     <p>Make birthdays unforgettable</p>
                     <div class="price">₹799</div>
-                    <button type="button" onclick="addToCart('Birthday Celebration Pack', 799, 'cc.jpeg')" class="btn">
+                    <button type="button" onclick="addToCart('Birthday Celebration Pack', 799, 'c.png')" class="btn">
                         <i class="fas fa-cart-plus"></i> Add to Cart
                     </button>
                 </div>
             </div>
-            <!-- Item 3 -->
             <div class="card">
-                <img src="dd.jpeg" alt="Gift">
+                <img src="d.png" alt="Gift">
                 <div class="card-body">
                     <h3>Home Decor Showpiece</h3>
                     <p>Stunning room elegance</p>
-                    <div class="price">₹1,299</div>
-                    <button type="button" onclick="addToCart('Home Decor Showpiece', 1299, 'dd.jpeg')" class="btn">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
-                </div>
-            </div>
-            <!-- Item 4 -->
-            <div class="card">
-                <img src="ee.jpeg" alt="Gift">
-                <div class="card-body">
-                    <h3>Anniversary Couple Set</h3>
-                    <p>Romantic token of love</p>
-                    <div class="price">₹999</div>
-                    <button type="button" onclick="addToCart('Anniversary Couple Set', 999, 'ee.jpeg')" class="btn">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
-                </div>
-            </div>
-            <!-- Item 5 -->
-            <div class="card">
-                <img src="ff.jpeg" alt="Gift">
-                <div class="card-body">
-                    <h3>Luxury Festive Box</h3>
-                    <p>Curated for special celebrations</p>
-                    <div class="price">₹649</div>
-                    <button type="button" onclick="addToCart('Luxury Festive Box', 649, 'ff.jpeg')" class="btn">
+                    <div class="price">₹1299</div>
+                    <button type="button" onclick="addToCart('Home Decor Showpiece', 1299, 'd.png')" class="btn">
                         <i class="fas fa-cart-plus"></i> Add to Cart
                     </button>
                 </div>
@@ -131,31 +103,27 @@
 
     <script>
         function addToCart(name, price, image) {
-            try {
-                let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
-                let item = cart.find(i => i.name === name);
-                if (item) { 
-                    item.quantity += 1; 
-                } else { 
-                    cart.push({ name: name, price: price, image: image, quantity: 1 }); 
-                }
-                localStorage.setItem('apnaMartCart', JSON.stringify(cart));
-                updateCartCount();
-                alert('✅ "' + name + '" successfully cart mein add ho gaya hai!');
-            } catch(err) {
-                alert('Error adding to cart: ' + err);
+            let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
+            let existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: name, price: Number(price), image: image, quantity: 1 });
             }
+            
+            localStorage.setItem('apnaMartCart', JSON.stringify(cart));
+            updateCartCount();
+            alert('✅ "' + name + '" Cart mein add ho gaya hai!');
         }
 
         function updateCartCount() {
             let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
-            let totalCount = cart.reduce((sum, i) => sum + i.quantity, 0);
+            let totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
             let badge = document.getElementById('cartCount');
-            if(badge) {
-                badge.innerText = totalCount;
-            }
+            if(badge) badge.innerText = totalCount;
         }
-        
+
         updateCartCount();
     </script>
 </body>
