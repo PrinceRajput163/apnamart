@@ -3,64 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apna Mart - Gift Store | Dibiyapur</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Apna Mart - Luxury Gift Store | Dibiyapur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #ff4757;
-            --dark: #2f3640;
+            --primary: #e84118;
+            --dark: #1e272e;
             --light: #f5f6fa;
             --white: #ffffff;
-            --shadow: 0 5px 15px rgba(0,0,0,0.08);
+            --gold: #fbc531;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.7; }
 
-        /* Navbar */
-        header { background: var(--white); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 5%; }
-        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .logo img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
-        .logo h1 { font-size: 20px; font-weight: 700; color: var(--dark); }
+        header { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
+        .logo h1 { font-size: 22px; font-weight: 700; color: var(--dark); font-family: 'Playfair Display', serif; }
         .logo h1 span { color: var(--primary); }
         
-        .nav-links { list-style: none; display: flex; gap: 15px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 14px; }
+        .nav-links { list-style: none; display: flex; gap: 20px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 14px; transition: var(--transition); }
         .nav-links a.active, .nav-links a:hover { color: var(--primary); }
+        .cart-badge { background: var(--primary); color: white; padding: 2px 7px; border-radius: 50px; font-size: 11px; font-weight: 600; }
+
+        .hero { background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('aa.jpeg') no-repeat center center/cover; height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 0 20px; }
+        .hero h2 { font-size: 42px; font-weight: 700; margin-bottom: 15px; font-family: 'Playfair Display', serif; }
+        .hero p { font-size: 16px; margin-bottom: 30px; max-width: 600px; margin-inline: auto; color: #f1f2f6; }
         
-        .cart-badge { background: var(--primary); color: white; padding: 2px 8px; border-radius: 50px; font-size: 12px; font-weight: 600; }
+        .btn { padding: 12px 30px; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; transition: var(--transition); border: none; cursor: pointer; }
+        .btn-primary { background: var(--primary); color: var(--white); box-shadow: 0 5px 15px rgba(232, 65, 24, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); }
 
-        /* Hero */
-        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('b.jpeg') no-repeat center center/cover; height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); padding: 0 20px; }
-        .hero h2 { font-size: 32px; font-weight: 700; margin-bottom: 15px; }
-        .hero p { font-size: 15px; margin-bottom: 25px; }
-        
-        .btn { padding: 10px 24px; border-radius: 30px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; border: none; cursor: pointer; }
-        .btn-primary { background: var(--primary); color: var(--white); }
-        .btn-whatsapp { background: #25d366; color: var(--white); }
+        .section { padding: 70px 5%; text-align: center; }
+        .section h2 { font-size: 32px; margin-bottom: 10px; font-family: 'Playfair Display', serif; color: var(--dark); }
+        .section p { color: #718093; font-size: 14px; margin-bottom: 40px; }
 
-        /* Section */
-        .section { padding: 50px 5%; text-align: center; }
-        .section h2 { font-size: 26px; margin-bottom: 10px; color: var(--dark); }
-        .section p { color: #666; font-size: 14px; margin-bottom: 30px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; text-align: left; }
+        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); border: 1px solid rgba(0,0,0,0.04); }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+        .card-body { padding: 20px; }
+        .card-body h3 { font-size: 18px; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+        .card-body p { font-size: 13px; color: #718093; margin-bottom: 15px; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: left; }
-        .card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 15px; }
-        .card-body h3 { font-size: 16px; margin-bottom: 5px; }
-        .card-body p { font-size: 13px; color: #777; margin-bottom: 10px; }
-        .price { font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 10px; }
+        footer { background: var(--dark); color: var(--white); text-align: center; padding: 25px; font-size: 13px; color: #a4b0be; }
 
-        /* Footer */
-        footer { background: var(--dark); color: var(--white); text-align: center; padding: 20px; font-size: 13px; }
-
-        /* Mobile Adjustments */
         @media(max-width: 768px) {
-            .nav-links { gap: 10px; font-size: 12px; }
-            .hero h2 { font-size: 26px; }
+            .hero h2 { font-size: 30px; }
+            .nav-links { gap: 12px; font-size: 12px; }
         }
     </style>
 </head>
@@ -69,12 +65,12 @@
     <header>
         <nav class="navbar">
             <a href="index.html" class="logo">
-                <img src="a.png" alt="Logo">
+                <img src="aa.jpeg" alt="Logo">
                 <h1>Apna <span>Mart</span></h1>
             </a>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="products.html">Gifts</a></li>
+                <li><a href="products.html">Catalog</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-badge" id="cartCount">0</span></a></li>
             </ul>
@@ -84,45 +80,42 @@
     <section class="hero">
         <div>
             <h2>Apna Mart Gift Store</h2>
-            <p>Dibiyapur ka sabse behtareen gift aur fancy items destination.</p>
-            <a href="products.html" class="btn btn-primary"><i class="fas fa-gift"></i> Explore Gifts</a>
+            <p>Phaphund Road, Durga Nagar, Dibiyapur ka sabse premium gift aur fancy items destination.</p>
+            <a href="products.html" class="btn btn-primary"><i class="fas fa-gift"></i> Explore Catalog</a>
         </div>
     </section>
 
     <section class="section">
-        <h2>Featured Collection</h2>
-        <p>Aapke khaas mauko ke liye behtareen taufe</p>
+        <h2>Store Highlights</h2>
+        <p>Aapke har khaas mauke ke liye behtareen aur unique taufe</p>
         <div class="grid">
             <div class="card">
-                <img src="b.jpeg" alt="Gift">
+                <img src="bb.jpeg" alt="Display">
                 <div class="card-body">
-                    <h3>Special Gift Hamper</h3>
-                    <p>Phaphund Road store available items.</p>
-                    <div class="price">₹499</div>
-                    <a href="products.html" class="btn btn-primary" style="width: 100%; justify-content: center;">View Catalog</a>
+                    <h3>Spacious Gift Hall</h3>
+                    <p>Explore wide variety of items directly from our Dibiyapur store.</p>
+                    <a href="products.html" class="btn btn-primary" style="width: 100%; justify-content: center;">View All Products</a>
                 </div>
             </div>
             <div class="card">
-                <img src="c.png" alt="Gift">
+                <img src="cc.jpeg" alt="Display">
                 <div class="card-body">
-                    <h3>Birthday Celebration Pack</h3>
-                    <p>Make birthdays unforgettable.</p>
-                    <div class="price">₹799</div>
-                    <a href="products.html" class="btn btn-primary" style="width: 100%; justify-content: center;">View Catalog</a>
+                    <h3>Celebration Hampers</h3>
+                    <p>Make birthdays and anniversaries memorable with special packs.</p>
+                    <a href="products.html" class="btn btn-primary" style="width: 100%; justify-content: center;">View All Products</a>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Apna Mart, Dibiyapur | Owner: Mr. Shyam Sundar Rajput</p>
+        <p>&copy; 2026 Apna Mart, Dibiyapur | Proprietor: Mr. Shyam Sundar Rajput</p>
     </footer>
 
     <script>
         function updateCartCount() {
             let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
-            let total = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cartCount').innerText = total;
+            document.getElementById('cartCount').innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
         }
         updateCartCount();
     </script>
