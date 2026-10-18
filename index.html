@@ -17,7 +17,7 @@
             --light: #f8f9fa;
             --white: #ffffff;
             --shadow: 0 15px 35px rgba(0,0,0,0.1);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -68,7 +68,7 @@
 
         /* Sticky Header */
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
             position: sticky;
@@ -133,31 +133,46 @@
             transition: var(--transition);
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: var(--primary);
         }
 
-        .nav-cta {
-            background: linear-gradient(135deg, #25d366, #1ebe5d);
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 50px;
-            text-decoration: none;
+        /* Cart Icon in Nav */
+        .cart-icon-link {
+            position: relative;
+            background: #fff3f3;
+            padding: 8px 15px;
+            border-radius: 30px;
+            color: var(--primary) !important;
             font-weight: 600;
-            font-size: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            border: 1px solid rgba(214, 48, 49, 0.2);
             transition: var(--transition);
         }
 
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        .cart-icon-link:hover {
+            background: var(--primary);
+            color: var(--white) !important;
         }
 
-        /* Hamburger Menu for Mobile */
+        .cart-count {
+            background: var(--primary);
+            color: var(--white);
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+
+        .cart-icon-link:hover .cart-count {
+            background: var(--white);
+            color: var(--primary);
+        }
+
         .menu-toggle {
             display: none;
             font-size: 24px;
@@ -175,7 +190,6 @@
             text-align: center;
             color: var(--white);
             padding: 40px 20px;
-            position: relative;
         }
 
         .hero-content h2 {
@@ -183,7 +197,6 @@
             font-weight: 700;
             margin-bottom: 20px;
             font-family: 'Playfair Display', serif;
-            letter-spacing: 0.5px;
         }
 
         .hero-content p {
@@ -269,245 +282,85 @@
             font-size: 15px;
         }
 
-        /* About Section */
-        .about-section {
+        /* Featured Products Preview Section */
+        .preview-section {
             padding: 90px 5%;
             background: var(--white);
         }
 
-        .about-grid {
+        .preview-grid {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            height: 420px;
-            object-fit: cover;
-            border: 4px solid var(--white);
-        }
-
-        .about-text h3 {
-            font-size: 28px;
-            color: var(--dark);
-            margin-bottom: 20px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .owner-badge {
-            background: linear-gradient(135deg, #fff5f5, #ffe3e3);
-            border-left: 5px solid var(--primary);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 0 12px 12px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-        }
-
-        .owner-badge h4 {
-            color: var(--primary);
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .owner-badge p {
-            font-size: 14px;
-            color: #57606f;
-        }
-
-        /* Collections / Gallery */
-        .gallery-section {
-            padding: 90px 5%;
-            background: #fdfdfd;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
-        .gallery-card {
-            background: var(--white);
+        .product-card {
+            background: var(--light);
             border-radius: 18px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.04);
+            border: 1px solid #eee;
+            text-align: center;
+            padding-bottom: 20px;
         }
 
-        .gallery-card:hover {
+        .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
         }
 
-        .gallery-img-container {
-            height: 260px;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .gallery-img {
-            height: 100%;
+        .product-img {
+            height: 240px;
             width: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
         }
 
-        .gallery-card:hover .gallery-img {
-            transform: scale(1.08);
+        .product-info {
+            padding: 20px;
         }
 
-        .gallery-info {
-            padding: 25px;
-            text-align: center;
-        }
-
-        .gallery-info h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-            color: var(--dark);
+        .product-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
             font-family: 'Playfair Display', serif;
         }
 
-        .gallery-info p {
-            font-size: 14px;
-            color: #718093;
+        .product-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 18px;
             margin-bottom: 15px;
         }
 
-        /* Features Section */
-        .features-section {
+        /* About Highlight */
+        .about-highlight {
+            padding: 80px 5%;
+            background: #fdfdfd;
+        }
+
+        .about-box {
             background: linear-gradient(135deg, var(--dark), #2f3542);
             color: var(--white);
-            padding: 80px 5%;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-            text-align: center;
-        }
-
-        .feature-box {
-            padding: 35px 25px;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: var(--transition);
-        }
-
-        .feature-box:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px);
-        }
-
-        .feature-box i {
-            font-size: 40px;
-            color: var(--gold);
-            margin-bottom: 20px;
-        }
-
-        .feature-box h3 {
-            margin-bottom: 10px;
-            font-size: 20px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .feature-box p {
-            font-size: 14px;
-            color: #a4b0be;
-        }
-
-        /* Contact & Inquiry Section */
-        .contact-section {
-            padding: 90px 5%;
-            background: var(--white);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-
-        .contact-info-box {
+            border-radius: 25px;
+            padding: 50px;
             display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            margin-bottom: 25px;
-            background: var(--light);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #eee;
-        }
-
-        .contact-info-box i {
-            font-size: 22px;
-            color: var(--primary);
-            background: #fff;
-            padding: 15px;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .contact-info-box h4 {
-            font-size: 17px;
-            color: var(--dark);
-            margin-bottom: 4px;
-            font-weight: 600;
-        }
-
-        .contact-info-box p {
-            font-size: 14px;
-            color: #57606f;
-        }
-
-        .contact-form {
-            background: var(--light);
-            padding: 40px;
-            border-radius: 20px;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
             box-shadow: var(--shadow);
-            border: 1px solid #eee;
         }
 
-        .contact-form h3 {
+        .about-box-text h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 24px;
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+
+        .about-box-text p {
+            color: #f1f2f6;
             margin-bottom: 20px;
-            color: var(--dark);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 14px;
-            color: var(--dark);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid #dcdde1;
-            border-radius: 10px;
-            outline: none;
-            transition: var(--transition);
-            font-size: 14px;
-            background: var(--white);
-        }
-
-        .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(214, 48, 49, 0.1);
+            font-size: 15px;
         }
 
         /* Floating WhatsApp Button */
@@ -545,11 +398,7 @@
             color: #a4b0be;
         }
 
-        /* Responsive Design */
         @media(max-width: 991px) {
-            .about-grid, .contact-grid {
-                grid-template-columns: 1fr;
-            }
             .nav-links {
                 position: absolute;
                 top: 100%;
@@ -568,11 +417,13 @@
             .menu-toggle {
                 display: block;
             }
+            .about-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
             .hero-content h2 {
                 font-size: 32px;
-            }
-            .hero-content p {
-                font-size: 15px;
             }
         }
     </style>
@@ -593,7 +444,7 @@
     <!-- Header / Navbar -->
     <header>
         <nav class="navbar">
-            <a href="#home" class="logo-container">
+            <a href="index.html" class="logo-container">
                 <img src="a.png" alt="Apna Mart Logo" class="logo-img">
                 <div class="logo-text">
                     <h1>Apna <span>Mart</span></h1>
@@ -601,11 +452,14 @@
                 </div>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#collection">Collections</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="https://wa.me/918923315930?text=Hello%20Apna%20Mart,%20I%20want%20to%20inquire%20about%20gifts." target="_blank" class="nav-cta"><i class="fab fa-whatsapp"></i> WhatsApp Inquiry</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="products.html">All Gifts & Catalog</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li>
+                    <a href="cart.html" class="cart-icon-link">
+                        <i class="fas fa-shopping-cart"></i> Cart <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </li>
             </ul>
             <div class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
@@ -617,160 +471,67 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h2>Welcome to Apna Mart Gift Store</h2>
-            <p>Dibiyapur ka sabse behtareen gift aur fancy items destination. Apno ke liye chuniyan khubsurat aur yaadgaar taufe!</p>
+            <p>Dibiyapur ka sabse behtareen gift aur fancy items destination. Amazon aur Flipkart ki tarah abhi online cart mein add karein aur WhatsApp par order bhejein!</p>
             <div class="btn-group">
-                <a href="#collection" class="btn btn-primary"><i class="fas fa-gift"></i> Explore Gallery</a>
-                <a href="https://wa.me/918923315930?text=Hello%20Apna%20Mart,%20I%20want%20to%20know%20more%20about%20your%20gift%20collection." target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                <a href="products.html" class="btn btn-primary"><i class="fas fa-gift"></i> Browse All Products</a>
+                <a href="https://wa.me/918923315930?text=Hello%20Apna%20Mart,%20I%20want%20to%20inquire%20about%20gifts." target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about-section" id="about">
+    <!-- Featured Products Preview -->
+    <section class="preview-section">
         <div class="section-header">
-            <h2>About Our Store</h2>
-            <p>Aapke har khushi ke mauke ko aur khaas banane ke liye taiyar</p>
+            <h2>Featured Gift Items</h2>
+            <p>Hamare store ke kuch khaas aur popular products</p>
         </div>
-        <div class="about-grid">
-            <div class="about-image">
-                <img src="b.jpeg" alt="Apna Mart Store Hall">
-            </div>
-            <div class="about-text">
-                <h3>Khubsurat Gifts, Pyar Bhare Ehsaas</h3>
-                <p>Apna Mart ek shandar aur spacious gift store hai jo Phaphund Road, Durga Nagar, Dibiyapur mein sthit hai. Hamare hall mein birthdays, anniversaries, weddings, aur sabhi special occasions ke liye unique gift items, home decor, showpieces, aur custom hampers ki wide range uplabdh hai.</p>
-                <div class="owner-badge">
-                    <h4>Proprietor: Mr. Shyam Sundar Rajput</h4>
-                    <p>Aapka vishwas hi hamari pehchan hai. Visited us for the best gifting experience!</p>
+        <div class="preview-grid">
+            <div class="product-card">
+                <img src="b.jpeg" alt="Store Gift Item" class="product-img">
+                <div class="product-info">
+                    <h3>Spacious Store Hamper</h3>
+                    <div class="product-price">Rs. 499</div>
+                    <a href="products.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;"><i class="fas fa-eye"></i> View Catalog</a>
                 </div>
-                <a href="https://wa.me/918923315930?text=Hello%20Mr.%20Shyam%20Sundar%20Ji,%20I%20am%20visiting%20your%20store%20website." target="_blank" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Direct Connect</a>
+            </div>
+            <div class="product-card">
+                <img src="c.png" alt="Special Gift Pack" class="product-img">
+                <div class="product-info">
+                    <h3>Birthday & Celebration Pack</h3>
+                    <div class="product-price">Rs. 799</div>
+                    <a href="products.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;"><i class="fas fa-eye"></i> View Catalog</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="d.png" alt="Home Decor Showpiece" class="product-img">
+                <div class="product-info">
+                    <h3>Premium Home Decor Showpiece</h3>
+                    <div class="product-price">Rs. 1,299</div>
+                    <a href="products.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;"><i class="fas fa-eye"></i> View Catalog</a>
+                </div>
             </div>
         </div>
-    </section>
-
-    <!-- Gift Collection Gallery -->
-    <section class="gallery-section" id="collection">
-        <div class="section-header">
-            <h2>Our Gift Gallery</h2>
-            <p>Hamare store ki kuch jhalak aur premium gift selections</p>
-        </div>
-        <div class="gallery-grid">
-            <div class="gallery-card">
-                <div class="gallery-img-container">
-                    <img src="b.jpeg" alt="Store View" class="gallery-img">
-                </div>
-                <div class="gallery-info">
-                    <h3>Spacious Store Hall</h3>
-                    <p>Wide variety of unique items displayed neatly in our store.</p>
-                    <a href="https://wa.me/918923315930?text=Hello,%20I%20want%20to%20inquire%20about%20store%20items%20seen%20in%20gallery." target="_blank" class="btn btn-primary" style="padding: 8px 18px; font-size: 13px;"><i class="fab fa-whatsapp"></i> Inquire</a>
-                </div>
-            </div>
-            <div class="gallery-card">
-                <div class="gallery-img-container">
-                    <img src="c.png" alt="Gift Collection" class="gallery-img">
-                </div>
-                <div class="gallery-info">
-                    <h3>Special Gift Hampers</h3>
-                    <p>Perfect for birthdays, anniversaries, and special celebrations.</p>
-                    <a href="https://wa.me/918923315930?text=Hello,%20I%20want%20details%20about%20Gift%20Hampers." target="_blank" class="btn btn-primary" style="padding: 8px 18px; font-size: 13px;"><i class="fab fa-whatsapp"></i> Inquire</a>
-                </div>
-            </div>
-            <div class="gallery-card">
-                <div class="gallery-img-container">
-                    <img src="d.png" alt="Showpieces & Decor" class="gallery-img">
-                </div>
-                <div class="gallery-info">
-                    <h3>Home Decor & Showpieces</h3>
-                    <p>Make your living space stunning with our exclusive collection.</p>
-                    <a href="https://wa.me/918923315930?text=Hello,%20I%20want%20details%20about%20Home%20Decor%20items." target="_blank" class="btn btn-primary" style="padding: 8px 18px; font-size: 13px;"><i class="fab fa-whatsapp"></i> Inquire</a>
-                </div>
-            </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="products.html" class="btn btn-primary">See All Products in Store <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="features-grid">
-            <div class="feature-box">
-                <i class="fas fa-store-alt"></i>
-                <h3>Spacious Hall Store</h3>
-                <p>Wide variety of items available under one roof in our well-arranged store.</p>
+    <!-- About Highlight Box -->
+    <section class="about-highlight">
+        <div class="about-box">
+            <div class="about-box-text">
+                <h3>Managed by Mr. Shyam Sundar Rajput</h3>
+                <p>Apna Mart sthit hai Phaphund Road, Durga Nagar, Dibiyapur par. Hamare paas ek shandar hall mein gifts ki vishal range uplabdh hai. Aap website se direct order ya WhatsApp inquiry kar sakte hain!</p>
+                <a href="contact.html" class="btn btn-primary" style="background: var(--gold); color: var(--dark); font-weight: 700;"><i class="fas fa-map-marker-alt"></i> Visit Store Location</a>
             </div>
-            <div class="feature-box">
-                <i class="fas fa-award"></i>
-                <h3>Best Premium Quality</h3>
-                <p>Carefully selected items designed especially to delight your loved ones.</p>
-            </div>
-            <div class="feature-box">
-                <i class="fas fa-bolt"></i>
-                <h3>Instant WhatsApp Inquiry</h3>
-                <p>Get quick price quotes and item details instantly over WhatsApp.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact & Inquiry Section -->
-    <section class="contact-section" id="contact">
-        <div class="section-header">
-            <h2>Get In Touch / Quick Inquiry</h2>
-            <p>Hamein call karein ya WhatsApp par direct inquiry bhejein</p>
-        </div>
-        <div class="contact-grid">
             <div>
-                <div class="contact-info-box">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h4>Store Address</h4>
-                        <p>Phaphund Road, Durga Nagar, Dibiyapur, Uttar Pradesh</p>
-                    </div>
-                </div>
-                <div class="contact-info-box">
-                    <i class="fas fa-phone-alt"></i>
-                    <div>
-                        <h4>Contact Numbers</h4>
-                        <p>+91 97565 95920<br>+91 95288 69946<br>+91 75007 81379</p>
-                    </div>
-                </div>
-                <div class="contact-info-box">
-                    <i class="fab fa-whatsapp"></i>
-                    <div>
-                        <h4>WhatsApp Inquiry Number</h4>
-                        <p>+91 89233 15930</p>
-                    </div>
-                </div>
-                <div class="contact-info-box">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h4>Email Address</h4>
-                        <p>swaritrajput0@gmail.com</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <h3>Send Quick WhatsApp Inquiry</h3>
-                <form id="whatsappInquiryForm">
-                    <div class="form-group">
-                        <label for="name">Aapka Naam (Your Name)</label>
-                        <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Mobile Number</label>
-                        <input type="tel" id="phone" class="form-control" placeholder="Enter your mobile number" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Gift / Inquiry Details</label>
-                        <textarea id="message" class="form-control" rows="4" placeholder="Aapko kis tarah ka gift chahiye likhein..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-whatsapp" style="width: 100%; justify-content: center;">
-                        <i class="fab fa-whatsapp"></i> Send Inquiry on WhatsApp
-                    </button>
-                </form>
+                <img src="a.png" alt="Owner Store Logo" style="width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--gold); object-fit: cover; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
             </div>
         </div>
     </section>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/918923315930?text=Hello%20Apna%20Mart,%20I%20have%20an%20inquiry%20regarding%20gifts." target="_blank" class="whatsapp-float">
+    <a href="https://wa.me/918923315930?text=Hello%20Apna%20Mart,%20I%20have%20an%20inquiry." target="_blank" class="whatsapp-float">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -779,9 +540,8 @@
         <p>&copy; 2026 Apna Mart Gift Store, Dibiyapur. All Rights Reserved. | Owner: Mr. Shyam Sundar Rajput</p>
     </footer>
 
-    <!-- JavaScript for Mobile Menu & WhatsApp Form -->
+    <!-- Global Cart Count Script -->
     <script>
-        // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
 
@@ -789,28 +549,13 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when clicking a link on mobile
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // WhatsApp Form Submission
-        document.getElementById('whatsappInquiryForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-            
-            const whatsappNumber = "918923315930";
-            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                `*New Inquiry from Apna Mart Website*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Message:*${message}`
-            )}`;
-            
-            window.open(url, '_blank');
-        });
+        // Update Cart Count in Header
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
+            let totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').innerText = totalCount;
+        }
+        updateCartCount();
     </script>
 </body>
 </html>
