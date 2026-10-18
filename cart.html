@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products Catalog - Apna Mart</title>
+    <title>Shopping Cart - Apna Mart</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -24,21 +24,28 @@
         .nav-links a.active, .nav-links a:hover { color: var(--primary); }
         .cart-badge { background: var(--primary); color: white; padding: 2px 7px; border-radius: 50px; font-size: 11px; font-weight: 600; }
 
-        .container { padding: 50px 5%; }
-        .container h2 { text-align: center; margin-bottom: 35px; font-size: 32px; font-family: 'Playfair Display', serif; }
+        .container { padding: 50px 5%; display: grid; grid-template-columns: 1.4fr 1fr; gap: 30px; }
+        .box { background: var(--white); padding: 25px; border-radius: 15px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.04); }
+        .box h2 { font-size: 20px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; font-family: 'Playfair Display', serif; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
-        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(0,0,0,0.04); }
-        .card img { width: 100%; height: 220px; object-fit: cover; }
-        .card-body { padding: 20px; text-align: center; }
-        .card-body h3 { font-size: 18px; margin-bottom: 5px; font-family: 'Playfair Display', serif; }
-        .card-body p { font-size: 13px; color: #718093; margin-bottom: 12px; }
-        .price { font-weight: 700; color: var(--primary); font-size: 18px; margin-bottom: 15px; }
+        .cart-item { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
+        
+        .quantity-box { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+        .qty-btn { background: #eee; border: none; width: 25px; height: 25px; border-radius: 4px; font-weight: 600; cursor: pointer; }
+        .qty-btn:hover { background: #ddd; }
 
-        .btn { padding: 12px 20px; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; border: none; cursor: pointer; width: 100%; background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(232, 65, 24, 0.3); }
-        .btn:hover { opacity: 0.95; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 5px; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #dcdde1; border-radius: 8px; font-size: 13px; outline: none; background: #fafafa; }
+        .form-control:focus { border-color: var(--primary); background: #fff; }
+
+        .btn-order { background: #25d366; color: white; padding: 14px; border: none; border-radius: 50px; width: 100%; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 15px; margin-top: 20px; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
+        .btn-order:hover { background: #1ebd5a; }
 
         footer { background: var(--dark); color: var(--white); text-align: center; padding: 25px; font-size: 13px; color: #a4b0be; margin-top: 50px; }
+
+        @media(max-width: 768px) { .container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -51,49 +58,37 @@
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="products.html" class="active">Catalog</a></li>
+                <li><a href="products.html">Catalog</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-badge" id="cartCount">0</span></a></li>
+                <li><a href="cart.html" class="active"><i class="fas fa-shopping-cart"></i> <span class="cart-badge" id="cartCount">0</span></a></li>
             </ul>
         </nav>
     </header>
 
     <div class="container">
-        <h2>Premium Gift Collection</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="b.jpeg" alt="Gift">
-                <div class="card-body">
-                    <h3>Special Gift Hamper</h3>
-                    <p>Exclusive package for loved ones</p>
-                    <div class="price">₹499</div>
-                    <button type="button" onclick="addToCart('Special Gift Hamper', 499, 'b.jpeg')" class="btn">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
+        <div class="box">
+            <h2>Your Shopping Cart</h2>
+            <div id="cartItemsList"></div>
+        </div>
+
+        <div class="box">
+            <h2>Checkout & Address</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Aapka Naam (Full Name)</label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter name" required>
                 </div>
-            </div>
-            <div class="card">
-                <img src="c.png" alt="Gift">
-                <div class="card-body">
-                    <h3>Birthday Celebration Pack</h3>
-                    <p>Make birthdays unforgettable</p>
-                    <div class="price">₹799</div>
-                    <button type="button" onclick="addToCart('Birthday Celebration Pack', 799, 'c.png')" class="btn">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="Enter mobile" required>
                 </div>
-            </div>
-            <div class="card">
-                <img src="d.png" alt="Gift">
-                <div class="card-body">
-                    <h3>Home Decor Showpiece</h3>
-                    <p>Stunning room elegance</p>
-                    <div class="price">₹1299</div>
-                    <button type="button" onclick="addToCart('Home Decor Showpiece', 1299, 'd.png')" class="btn">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
+                <div class="form-group">
+                    <label>Delivery Address / Location in Dibiyapur</label>
+                    <textarea id="address" class="form-control" rows="2" placeholder="Phaphund Road, Durga Nagar..." required></textarea>
                 </div>
-            </div>
+                <div style="font-weight: 700; font-size: 18px; margin: 15px 0;">Total Amount: <span id="grandTotal" style="color:var(--primary);">₹0</span></div>
+                <button type="submit" class="btn-order"><i class="fab fa-whatsapp"></i> Confirm Order on WhatsApp</button>
+            </form>
         </div>
     </div>
 
@@ -102,29 +97,94 @@
     </footer>
 
     <script>
-        function addToCart(name, price, image) {
+        function loadCart() {
             let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
-            let existingItem = cart.find(item => item.name === name);
+            let list = document.getElementById('cartItemsList');
+            let totalEl = document.getElementById('grandTotal');
             
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ name: name, price: Number(price), image: image, quantity: 1 });
+            if (cart.length === 0) {
+                list.innerHTML = `<p style="text-align:center; color:#718093; padding:30px;">Aapka cart khaali hai!</p>`;
+                totalEl.innerText = "₹0";
+                document.getElementById('cartCount').innerText = "0";
+                return;
+            }
+
+            let html = '', total = 0, count = 0;
+            cart.forEach((item, index) => {
+                let itemTotal = Number(item.price) * Number(item.quantity);
+                total += itemTotal;
+                count += Number(item.quantity);
+                
+                html += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="">
+                        <div style="flex-grow:1; padding:0 10px;">
+                            <div style="font-size:14px; font-weight:600;">${item.name}</div>
+                            <div style="font-size:12px; color:#718093;">₹${item.price} x ${item.quantity} = ₹${itemTotal}</div>
+                            <div class="quantity-box">
+                                <button type="button" class="qty-btn" onclick="changeQuantity(${index}, -1)">-</button>
+                                <span style="font-size:13px; font-weight:600; padding:0 5px;">${item.quantity}</span>
+                                <button type="button" class="qty-btn" onclick="changeQuantity(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button type="button" onclick="removeItem(${index})" style="background:none; border:none; color:#e84118; cursor:pointer; font-size:16px;" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+            });
+            
+            list.innerHTML = html;
+            totalEl.innerText = '₹' + total;
+            document.getElementById('cartCount').innerText = count;
+        }
+
+        function changeQuantity(index, change) {
+            let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
+            cart[index].quantity += change;
+            
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
             }
             
             localStorage.setItem('apnaMartCart', JSON.stringify(cart));
-            updateCartCount();
-            alert('✅ "' + name + '" Cart mein add ho gaya hai!');
+            loadCart();
         }
 
-        function updateCartCount() {
+        function removeItem(index) {
             let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
-            let totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            let badge = document.getElementById('cartCount');
-            if(badge) badge.innerText = totalCount;
+            cart.splice(index, 1);
+            localStorage.setItem('apnaMartCart', JSON.stringify(cart));
+            loadCart();
         }
 
-        updateCartCount();
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
+            if (cart.length === 0) {
+                alert('Aapka cart khaali hai!');
+                return;
+            }
+
+            let name = document.getElementById('name').value;
+            let phone = document.getElementById('phone').value;
+            let address = document.getElementById('address').value;
+
+            let msg = `🛒 *NEW ORDER - APNA MART* 🎁\n\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n\n*Ordered Items:*\n`;
+            let total = 0;
+            
+            cart.forEach((i, idx) => {
+                let itemTotal = Number(i.price) * Number(i.quantity);
+                total += itemTotal;
+                msg += `${idx + 1}. ${i.name} (₹${i.price} x ${i.quantity}) = ₹${itemTotal}\n`;
+            });
+
+            msg += `\n*Total Order Amount: ₹${total}*`;
+
+            localStorage.removeItem('apnaMartCart');
+            window.open('https://wa.me/918923315930?text=' + encodeURIComponent(msg), '_blank');
+            window.location.href = "index.html";
+        });
+
+        loadCart();
     </script>
 </body>
 </html>
