@@ -3,527 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products Catalog - Apna Mart | Dibiyapur</title>
-    <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Products Catalog - Apna Mart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            --primary: #d63031;
-            --primary-dark: #b71540;
-            --gold: #f39c12;
-            --dark: #1e272e;
-            --light: #f8f9fa;
-            --white: #ffffff;
-            --shadow: 0 15px 35px rgba(0,0,0,0.1);
-            --transition: all 0.3s ease;
-        }
+        :root { --primary: #ff4757; --dark: #2f3640; --light: #f5f6fa; --white: #ffffff; --shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        header { background: var(--white); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 5%; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+        .logo h1 { font-size: 20px; font-weight: 700; color: var(--dark); }
+        .logo h1 span { color: var(--primary); }
+        
+        .nav-links { list-style: none; display: flex; gap: 15px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 14px; }
+        .nav-links a.active, .nav-links a:hover { color: var(--primary); }
+        .cart-badge { background: var(--primary); color: white; padding: 2px 8px; border-radius: 50px; font-size: 12px; font-weight: 600; }
 
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.7;
-        }
+        .container { padding: 40px 5%; }
+        .container h2 { text-align: center; margin-bottom: 25px; font-size: 24px; }
 
-        /* Top Bar */
-        .top-bar {
-            background: linear-gradient(135deg, var(--dark), #353b48);
-            color: var(--white);
-            padding: 10px 5%;
-            font-size: 13px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 15px; text-align: center; }
+        .card-body h3 { font-size: 16px; margin-bottom: 5px; }
+        .card-body p { font-size: 13px; color: #777; margin-bottom: 10px; }
+        .price { font-weight: 700; color: var(--primary); font-size: 16px; margin-bottom: 15px; }
 
-        .top-bar-info a {
-            color: var(--white);
-            text-decoration: none;
-            margin-right: 15px;
-            transition: var(--transition);
-        }
+        .btn { padding: 10px 20px; border-radius: 30px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; border: none; cursor: pointer; width: 100%; background: var(--primary); color: white; }
+        .btn:hover { opacity: 0.9; }
 
-        .top-bar-info a:hover {
-            color: var(--gold);
-        }
-
-        .top-bar-info i, .top-bar span i {
-            color: var(--gold);
-            margin-right: 5px;
-        }
-
-        /* Sticky Header */
-        header {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 5%;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--gold);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .logo-text h1 {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--dark);
-            font-family: 'Playfair Display', serif;
-            line-height: 1.1;
-        }
-
-        .logo-text h1 span {
-            color: var(--primary);
-        }
-
-        .logo-text p {
-            font-size: 11px;
-            color: #718093;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            font-size: 15px;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary);
-        }
-
-        /* Cart Icon in Nav */
-        .cart-icon-link {
-            position: relative;
-            background: #fff3f3;
-            padding: 8px 15px;
-            border-radius: 30px;
-            color: var(--primary) !important;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid rgba(214, 48, 49, 0.2);
-            transition: var(--transition);
-        }
-
-        .cart-icon-link:hover {
-            background: var(--primary);
-            color: var(--white) !important;
-        }
-
-        .cart-count {
-            background: var(--primary);
-            color: var(--white);
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 50%;
-            position: absolute;
-            top: -5px;
-            right: -5px;
-        }
-
-        .cart-icon-link:hover .cart-count {
-            background: var(--white);
-            color: var(--primary);
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--dark);
-        }
-
-        /* Page Banner */
-        .page-banner {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('b.jpeg') no-repeat center center/cover;
-            padding: 60px 20px;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .page-banner h2 {
-            font-size: 38px;
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 10px;
-        }
-
-        /* Catalog Section */
-        .catalog-section {
-            padding: 80px 5%;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid #eee;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .product-img-box {
-            height: 250px;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .product-img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .product-card:hover .product-img {
-            transform: scale(1.05);
-        }
-
-        .product-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .product-info h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .product-info p {
-            font-size: 13px;
-            color: #718093;
-            margin-bottom: 12px;
-        }
-
-        .product-price {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-            font-size: 14px;
-            width: 100%;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--white);
-            box-shadow: 0 5px 15px rgba(214, 48, 49, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Floating WhatsApp Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25d366;
-            color: #fff;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1) rotate(10deg);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: var(--white);
-            text-align: center;
-            padding: 30px 5%;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            font-size: 14px;
-            color: #a4b0be;
-        }
-
-        @media(max-width: 991px) {
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                padding: 20px 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: clip-path 0.4s ease-in-out;
-            }
-            .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            .menu-toggle {
-                display: block;
-            }
-        }
+        footer { background: var(--dark); color: var(--white); text-align: center; padding: 20px; font-size: 13px; margin-top: 40px; }
     </style>
 </head>
 <body>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="top-bar-info">
-            <a href="tel:9756595920"><i class="fas fa-phone-alt"></i> +91 97565 95920</a>
-            <a href="mailto:swaritrajput0@gmail.com"><i class="fas fa-envelope"></i> swaritrajput0@gmail.com</a>
-        </div>
-        <div>
-            <span><i class="fas fa-map-marker-alt"></i> Phaphund Road, Durga Nagar, Dibiyapur</span>
-        </div>
-    </div>
-
-    <!-- Header / Navbar -->
     <header>
         <nav class="navbar">
-            <a href="index.html" class="logo-container">
-                <img src="a.png" alt="Apna Mart Logo" class="logo-img">
-                <div class="logo-text">
-                    <h1>Apna <span>Mart</span></h1>
-                    <p>Gift Store</p>
-                </div>
+            <a href="index.html" class="logo">
+                <img src="a.png" alt="Logo">
+                <h1>Apna <span>Mart</span></h1>
             </a>
-            <ul class="nav-links" id="navLinks">
+            <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="products.html" class="active">All Gifts & Catalog</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-                <li>
-                    <a href="cart.html" class="cart-icon-link">
-                        <i class="fas fa-shopping-cart"></i> Cart <span class="cart-count" id="cartCount">0</span>
-                    </a>
-                </li>
+                <li><a href="products.html" class="active">Gifts</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-badge" id="cartCount">0</span></a></li>
             </ul>
-            <div class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </div>
         </nav>
     </header>
 
-    <!-- Page Banner -->
-    <section class="page-banner">
-        <h2>Our Gift Catalog</h2>
-        <p>Apne pasandida gift items ko cart mein add karein aur WhatsApp par order bhejein</p>
-    </section>
-
-    <!-- Products Catalog Grid -->
-    <section class="catalog-section">
-        <div class="products-grid">
-            
-            <!-- Product 1 -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="b.jpeg" alt="Spacious Store Hamper" class="product-img">
-                </div>
-                <div class="product-info">
+    <div class="container">
+        <h2>Gift Items Catalog</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="b.jpeg" alt="Item">
+                <div class="card-body">
                     <h3>Spacious Store Hamper</h3>
-                    <p>Perfect gift pack available directly from our hall store.</p>
-                    <div class="product-price">₹499</div>
-                    <button onclick="addToCart('Spacious Store Hamper', 499, 'b.jpeg')" class="btn btn-primary">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
+                    <p>Perfect gift pack</p>
+                    <div class="price">₹499</div>
+                    <button onclick="addToCart('Spacious Store Hamper', 499, 'b.jpeg')" class="btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
                 </div>
             </div>
-
-            <!-- Product 2 -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="c.png" alt="Birthday Celebration Pack" class="product-img">
-                </div>
-                <div class="product-info">
-                    <h3>Birthday & Celebration Pack</h3>
-                    <p>Make birthdays unforgettable with this special gift selection.</p>
-                    <div class="product-price">₹799</div>
-                    <button onclick="addToCart('Birthday & Celebration Pack', 799, 'c.png')" class="btn btn-primary">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
+            <div class="card">
+                <img src="c.png" alt="Item">
+                <div class="card-body">
+                    <h3>Birthday Celebration Pack</h3>
+                    <p>Make birthdays special</p>
+                    <div class="price">₹799</div>
+                    <button onclick="addToCart('Birthday Celebration Pack', 799, 'c.png')" class="btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
                 </div>
             </div>
-
-            <!-- Product 3 -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="d.png" alt="Premium Home Decor Showpiece" class="product-img">
-                </div>
-                <div class="product-info">
-                    <h3>Premium Home Decor Showpiece</h3>
-                    <p>Stunning showpiece to elevate living room elegance.</p>
-                    <div class="product-price">₹1,299</div>
-                    <button onclick="addToCart('Premium Home Decor Showpiece', 1299, 'd.png')" class="btn btn-primary">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
+            <div class="card">
+                <img src="d.png" alt="Item">
+                <div class="card-body">
+                    <h3>Home Decor Showpiece</h3>
+                    <p>Stunning room look</p>
+                    <div class="price">₹1,299</div>
+                    <button onclick="addToCart('Home Decor Showpiece', 1299, 'd.png')" class="btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
                 </div>
             </div>
-
-            <!-- Product 4 -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="b.jpeg" alt="Anniversary Couple Gift Set" class="product-img">
-                </div>
-                <div class="product-info">
-                    <h3>Anniversary Couple Gift Set</h3>
-                    <p>Special token of love for couples and anniversaries.</p>
-                    <div class="product-price">₹999</div>
-                    <button onclick="addToCart('Anniversary Couple Gift Set', 999, 'b.jpeg')" class="btn btn-primary">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
-                </div>
-            </div>
-
-            <!-- Product 5 -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="c.png" alt="Festive Special Gift Box" class="product-img">
-                </div>
-                <div class="product-info">
-                    <h3>Festive Special Gift Box</h3>
-                    <p>Curated festive hampers for celebrations and festivals.</p>
-                    <div class="product-price">₹649</div>
-                    <button onclick="addToCart('Festive Special Gift Box', 649, 'c.png')" class="btn btn-primary">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
-                </div>
-            </div>
-
-            <!-- Product 6 -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="d.png" alt="Luxury Showpiece Idol" class="product-img">
-                </div>
-                <div class="product-info">
-                    <h3>Luxury Showpiece Idol</h3>
-                    <p>Exquisite craftsmanship for gifting and home temple.</p>
-                    <div class="product-price">₹1,499</div>
-                    <button onclick="addToCart('Luxury Showpiece Idol', 1499, 'd.png')" class="btn btn-primary">
-                        <i class="fas fa-cart-plus"></i> Add to Cart
-                    </button>
-                </div>
-            </div>
-
         </div>
-    </section>
+    </div>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/918923315930?text=Hello%20Apna%20Mart,%20I%20have%20an%20inquiry." target="_blank" class="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Apna Mart Gift Store, Dibiyapur. All Rights Reserved. | Owner: Mr. Shyam Sundar Rajput</p>
+        <p>&copy; 2026 Apna Mart, Dibiyapur | Owner: Mr. Shyam Sundar Rajput</p>
     </footer>
 
-    <!-- Cart Script -->
     <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Add to Cart Function
         function addToCart(name, price, image) {
             let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
-            let existingItem = cart.find(item => item.name === name);
-
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ name: name, price: price, image: image, quantity: 1 });
-            }
-
+            let item = cart.find(i => i.name === name);
+            if (item) { item.quantity += 1; } else { cart.push({ name, price, image, quantity: 1 }); }
             localStorage.setItem('apnaMartCart', JSON.stringify(cart));
             updateCartCount();
-            
-            alert(`✅ "${name}" successfully cart mein add ho gaya hai!`);
+            alert(`✅ "${name}" cart mein add ho gaya hai!`);
         }
-
-        // Update Cart Count
         function updateCartCount() {
             let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
-            let totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cartCount').innerText = totalCount;
+            document.getElementById('cartCount').innerText = cart.reduce((sum, i) => sum + i.quantity, 0);
         }
         updateCartCount();
     </script>
