@@ -36,7 +36,7 @@
         .card-body p { font-size: 13px; color: #718093; margin-bottom: 12px; }
         .price { font-weight: 700; color: var(--primary); font-size: 18px; margin-bottom: 15px; }
 
-        .btn { padding: 10px 20px; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; border: none; cursor: pointer; width: 100%; background: var(--primary); color: white; transition: var(--transition); box-shadow: 0 4px 12px rgba(232, 65, 24, 0.3); }
+        .btn { padding: 12px 20px; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; border: none; cursor: pointer; width: 100%; background: var(--primary); color: white; transition: var(--transition); box-shadow: 0 4px 12px rgba(232, 65, 24, 0.3); }
         .btn:hover { opacity: 0.95; }
 
         footer { background: var(--dark); color: var(--white); text-align: center; padding: 25px; font-size: 13px; color: #a4b0be; margin-top: 50px; }
@@ -69,7 +69,9 @@
                     <h3>Special Gift Hamper</h3>
                     <p>Exclusive package for loved ones</p>
                     <div class="price">₹499</div>
-                    <button onclick="addToCart('Special Gift Hamper', 499, 'bb.jpeg')" class="btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    <button type="button" onclick="addToCart('Special Gift Hamper', 499, 'bb.jpeg')" class="btn">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
                 </div>
             </div>
             <!-- Item 2 -->
@@ -79,7 +81,9 @@
                     <h3>Birthday Celebration Pack</h3>
                     <p>Make birthdays unforgettable</p>
                     <div class="price">₹799</div>
-                    <button onclick="addToCart('Birthday Celebration Pack', 799, 'cc.jpeg')" class="btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    <button type="button" onclick="addToCart('Birthday Celebration Pack', 799, 'cc.jpeg')" class="btn">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
                 </div>
             </div>
             <!-- Item 3 -->
@@ -89,7 +93,9 @@
                     <h3>Home Decor Showpiece</h3>
                     <p>Stunning room elegance</p>
                     <div class="price">₹1,299</div>
-                    <button onclick="addToCart('Home Decor Showpiece', 1299, 'dd.jpeg')" class="btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    <button type="button" onclick="addToCart('Home Decor Showpiece', 1299, 'dd.jpeg')" class="btn">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
                 </div>
             </div>
             <!-- Item 4 -->
@@ -99,7 +105,9 @@
                     <h3>Anniversary Couple Set</h3>
                     <p>Romantic token of love</p>
                     <div class="price">₹999</div>
-                    <button onclick="addToCart('Anniversary Couple Set', 999, 'ee.jpeg')" class="btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    <button type="button" onclick="addToCart('Anniversary Couple Set', 999, 'ee.jpeg')" class="btn">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
                 </div>
             </div>
             <!-- Item 5 -->
@@ -109,7 +117,9 @@
                     <h3>Luxury Festive Box</h3>
                     <p>Curated for special celebrations</p>
                     <div class="price">₹649</div>
-                    <button onclick="addToCart('Luxury Festive Box', 649, 'ff.jpeg')" class="btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    <button type="button" onclick="addToCart('Luxury Festive Box', 649, 'ff.jpeg')" class="btn">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
                 </div>
             </div>
         </div>
@@ -121,17 +131,31 @@
 
     <script>
         function addToCart(name, price, image) {
-            let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
-            let item = cart.find(i => i.name === name);
-            if (item) { item.quantity += 1; } else { cart.push({ name, price, image, quantity: 1 }); }
-            localStorage.setItem('apnaMartCart', JSON.stringify(cart));
-            updateCartCount();
-            alert(`✅ "${name}" successfully cart mein add ho gaya hai!`);
+            try {
+                let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
+                let item = cart.find(i => i.name === name);
+                if (item) { 
+                    item.quantity += 1; 
+                } else { 
+                    cart.push({ name: name, price: price, image: image, quantity: 1 }); 
+                }
+                localStorage.setItem('apnaMartCart', JSON.stringify(cart));
+                updateCartCount();
+                alert('✅ "' + name + '" successfully cart mein add ho gaya hai!');
+            } catch(err) {
+                alert('Error adding to cart: ' + err);
+            }
         }
+
         function updateCartCount() {
             let cart = JSON.parse(localStorage.getItem('apnaMartCart')) || [];
-            document.getElementById('cartCount').innerText = cart.reduce((sum, i) => sum + i.quantity, 0);
+            let totalCount = cart.reduce((sum, i) => sum + i.quantity, 0);
+            let badge = document.getElementById('cartCount');
+            if(badge) {
+                badge.innerText = totalCount;
+            }
         }
+        
         updateCartCount();
     </script>
 </body>
